@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import "./index.less"
 
 export default function Home() {
   return (
-    <div>
-      <h2>首页</h2>
+    <div className="home">
+      <div className="home-title">
+        Do something you enjoy
+      </div>
     </div>
   );
 }
