@@ -1,0 +1,70 @@
+.milepost{
+  width: 100%;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background-color: #ffffff;
+
+  .milepost-title{
+    font-size: 35px;
+    font-weight: 200;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .milepost-show-outer{
+    position: relative;
+    width: 90vh;
+    height: 100px;
+    margin: auto;
+    overflow: hidden;
+    
+
+    .milepost-show-cover{
+      position: absolute;
+      top: 0;
+      width: 15%;
+      height: 100%;
+    }
+
+    .milepost-show-cover-left{
+      left: 0;
+      background-image: linear-gradient(to left,rgba(255,255,255,0),white);
+    }
+
+    .milepost-show-cover-right{
+      left: 85%;
+      background-image: linear-gradient(to right,rgba(255,255,255,0),white);
+    }
+    
+    .milepost-show{
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: -17px;
+      padding-left: 15%;
+      display: flex;
+      overflow-x: scroll;
+      overflow-y: hidden;
+  
+      .milepost-item{
+        flex-shrink: 0;
+        box-sizing: border-box;
+        padding:20px;
+        width: 200px;
+
+        .milepost-item-date{
+          font-family: microsoft yahei;
+          font-size: 17px;
+          font-weight: 700;
+          margin-bottom: 3px;
+        }
+
+        .milepost-item-content{
+          font-size: 13px;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}
