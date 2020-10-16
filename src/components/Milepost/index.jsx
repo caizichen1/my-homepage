@@ -1,44 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./index.less"
+import axios from '../../utils/axios'
 
 export default function Milepost() {
-  const [milepost, setMilepost] = useState([
-    {
-      id: 1,
-      date: '2020.10.12',
-      content: '虚拟滚动测试',
-    },
-    {
-      id: 2,
-      date: '2020.10.13',
-      content: '虚拟滚动测试',
-    },
-    {
-      id: 3,
-      date: '2020.10.13',
-      content: '虚拟滚动测试',
-    },
-    {
-      id: 4,
-      date: '2020.10.13',
-      content: '虚拟滚动测试',
-    },
-    {
-      id: 5,
-      date: '2020.10.13',
-      content: '虚拟滚动测试',
-    },
-    {
-      id: 6,
-      date: '2020.10.13',
-      content: '虚拟滚动测试',
-    },
-    {
-      id: 7,
-      date: '2020.10.13',
-      content: '虚拟滚动测试',
-    },
-  ]);
+  const [milepost, setMilepost] = useState([]);
+
+  //从后端初始化Milepost数据
+  useEffect(() => {
+    axios.get('/api/getMilepost').then(({ data }) => {
+      setMilepost(data);
+    }).catch(error => {
+      console.error('axios报错:', error)
+    })
+  }, [])
+
 
   return (
     <div className="milepost">
