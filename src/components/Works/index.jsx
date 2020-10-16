@@ -1,25 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./index.less"
+import axios from '../../utils/axios'
 
 export default function Works() {
-  const [works, setWorks] = useState([
-    {
-      id: 1,
-      img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
-      url: 'https://www.baidu.com',
-      title: '百度一下',
-      content: '百度一下，你就知道',
-      desc: '暂无作品，占位置',
-    },
-    {
-      id: 2,
-      img: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
-      url: 'https://www.baidu.com',
-      title: '百度一下',
-      content: '百度一下，你就知道',
-      desc: '暂无作品，占位置',
-    },
-  ]);
+  const [works, setWorks] = useState([]);
+
+  //从后端初始化Works数据
+  useEffect(() => {
+    axios.get('/api/getWorks').then(({ data }) => {
+      setWorks(data);
+    }).catch(error => {
+      console.error('axios报错:', error)
+    })
+  }, [])
+
 
   const goWork = (url) => {
     window.open(url);
