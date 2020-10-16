@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./index.less"
+import axios from '../../utils/axios'
 
 export default function About() {
-  const [aboutLabel, setAboutLabel] = useState([
-    {
-      id: 1,
-      label: '标签1',
-    },
-    {
-      id: 2,
-      label: '长一点的标签2',
-    }
-  ]);
-  const [aboutContent, setAboutContent] = useState('预设数据<br/>预设数据');
+  const [aboutLabel, setAboutLabel] = useState([]);
+  const [aboutContent, setAboutContent] = useState([]);
+
+ 
+
+  //从后端初始化About数据
+  useEffect(() => {
+    axios.get('/api/getAboutMsg').then(({ data }) => {
+      console.log(data.aboutContentResult);
+      setAboutLabel(data.aboutLabelResult)
+      setAboutContent(data.aboutContentResult)
+    }).catch(error => {
+      console.error('axios报错:', error)
+    })
+  }, [])
+
 
   return (
     <div className="about">
@@ -21,10 +27,14 @@ export default function About() {
       </div>
       <div className="about-label">
         {aboutLabel.map(item => {
-          return <div className="about-label-item" key={item.id}>{item.label}</div>
+          return <div className="about-label-item" key={item.id}>{item.aboutLabel}</div>
         })}
       </div>
-      <div className="about-content" dangerouslySetInnerHTML={{ __html: aboutContent }} />
+      <div className="about-content" >
+        {aboutContent.map(item => {
+          return <div className="about-content-item" key={item.id} dangerouslySetInnerHTML={{ __html: item.aboutContent }} />
+        })}
+      </div>
     </div>
   );
 }
