@@ -11,7 +11,6 @@ export default function About() {
   //从后端初始化About数据
   useEffect(() => {
     axios.get('/api/getAboutMsg').then(({ data }) => {
-      console.log(data.aboutContentResult);
       setAboutLabel(data.aboutLabelResult)
       setAboutContent(data.aboutContentResult)
     }).catch(error => {
