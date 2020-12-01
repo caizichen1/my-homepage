@@ -1,0 +1,22 @@
+.arrow{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%);
+
+  .arrow{
+    opacity: 0;
+    animation: arrow 1s infinite;
+    position: relative;
+
+    @keyframes arrow
+      {
+        0% { opacity: 0; bottom:40px}
+        100% { opacity: 1; bottom:20px }
+      }
+  }
+
+
+}
